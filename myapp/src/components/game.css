@@ -6,6 +6,11 @@
 .title{
     font-size: 35px;
     color: white;
+    text-align: center;
+}
+
+span{
+    color: #38fa38;
 }
 
 .board{

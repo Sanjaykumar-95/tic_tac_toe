@@ -80,7 +80,7 @@ function Game(){
     const reset=()=>{
         setLock(false);
         data=["","","","","","","","",""];
-        titleref.current.innerHTML="Welcome to Tic Tac Toe Game";
+        titleref.current.innerHTML='Welcome to <span>Tic Tac Toe</span> Game';
         box_arr.map((ele)=>{
             ele.current.innerHTML="";
         })
@@ -88,7 +88,7 @@ function Game(){
 
     return(
         <div className='container'>
-            <h3 className='title' ref={titleref}>Welcome to <span style={{color:'#38fa38'}}>Tic Tac Toe</span> Game</h3>
+            <h3 className='title' ref={titleref}>Welcome to <span>Tic Tac Toe</span> Game</h3>
             <div className="board">
                 <div className="row1">
                     <div className="box" ref={box1} onClick={(e)=>{toogle(e,0)}}></div>
