@@ -52,3 +52,18 @@ span{
 .title img{
     height: 50px;
 }
+
+.winner-line {
+    background-color: yellow;
+    animation: highlightWinner 1s infinite alternate;
+  }
+  
+  @keyframes highlightWinner {
+    0% {
+      background-color: yellow;
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+  

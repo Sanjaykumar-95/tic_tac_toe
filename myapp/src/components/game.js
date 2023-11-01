@@ -9,6 +9,7 @@ function Game(){
 
     const[count,setCount]=useState(0);
     const[lock,setLock]=useState(false);
+
     let titleref=useRef(null);
     let box1=useRef(null);
     let box2=useRef(null);
@@ -37,37 +38,30 @@ function Game(){
         check();
     }
 
-    const check=()=>{
-        if(data[0]===data[1] && data[1]===data[2] && data[2]!==""){
-            won(data[2])
+    const check = () => {
+        if (data[0] === data[1] && data[1] === data[2] && data[2] !== "") {
+          won(data[2], [0, 1, 2]);
+        } else if (data[3] === data[4] && data[4] === data[5] && data[5] !== "") {
+          won(data[5], [3, 4, 5]);
+        } else if (data[6] === data[7] && data[7] === data[8] && data[8] !== "") {
+          won(data[8], [6, 7, 8]);
+        } else if (data[0] === data[3] && data[3] === data[6] && data[6] !== "") {
+          won(data[6], [0, 3, 6]);
+        } else if (data[1] === data[4] && data[4] === data[7] && data[7] !== "") {
+          won(data[7], [1, 4, 7]);
+        } else if (data[2] === data[5] && data[5] === data[8] && data[8] !== "") {
+          won(data[8], [2, 5, 8]);
+        } else if (data[0] === data[4] && data[4] === data[8] && data[8] !== "") {
+          won(data[8], [0, 4, 8]);
+        } else if (data[0] === data[1] && data[1] === data[2] && data[2] !== "") {
+          won(data[2], [0, 1, 2]);
+        } else if (data[2] === data[4] && data[4] === data[6] && data[6] !== "") {
+          won(data[6], [2, 4, 6]);
         }
-        else if(data[3]===data[4] && data[4]===data[5] && data[5]!==""){
-            won(data[5])
-        }
-        else if(data[6]===data[7] && data[7]===data[8] && data[8]!==""){
-            won(data[8])
-        }
-        else if(data[0]===data[3] && data[3]===data[6] && data[6]!==""){
-            won(data[6])
-        }
-        else if(data[1]===data[4] && data[4]===data[7] && data[7]!==""){
-            won(data[7])
-        }
-        else if(data[2]===data[5] && data[5]===data[8] && data[8]!==""){
-            won(data[8])
-        }
-        else if(data[0]===data[4] && data[4]===data[8] && data[8]!==""){
-            won(data[8])
-        }
-        else if(data[0]===data[1] && data[1]===data[2] && data[2]!==""){
-            won(data[2])
-        }
-        else if(data[2]===data[4] && data[4]===data[6] && data[6]!==""){
-            won(data[6])
-        }
-    }
+      }
+      
 
-    const won = (winner) =>{
+    const won = (winner, winningCombo) =>{
         setLock(true);
         if(winner === "X"){
             titleref.current.innerHTML=`<img src=${img1}> won the game`;
@@ -75,6 +69,12 @@ function Game(){
         else{
             titleref.current.innerHTML=`<img src=${img2}> won the game`;
         }
+
+        winningCombo.forEach((index) => {
+            box_arr[index].current.classList.add('winner-line');
+        });
+        
+
     }
 
     const reset=()=>{
@@ -84,6 +84,10 @@ function Game(){
         box_arr.map((ele)=>{
             ele.current.innerHTML="";
         })
+
+        box_arr.forEach((box) => {
+            box.current.classList.remove('winner-line');
+        });
     }
 
     return(
