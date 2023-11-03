@@ -66,8 +66,11 @@ function Game(){
         if(winner === "X"){
             titleref.current.innerHTML=`<img src=${img1}> won the game`;
         }
-        else{
+        if else(winner === "o"){
             titleref.current.innerHTML=`<img src=${img2}> won the game`;
+        }
+        else{
+            titleref.current.innerHTML=`The game was a tie`;
         }
 
         winningCombo.forEach((index) => {
